@@ -113,8 +113,6 @@ fetch(baseUrl)
   .then((res) => res.json())
   .then(showCountryList);
 
-console.log(country);
-
 function showCountryList(country) {
   country.forEach((country) => {
     countryListRef.insertAdjacentHTML(
