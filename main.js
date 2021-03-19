@@ -88,9 +88,9 @@ function addToJobUser(users) {
   console.log("Оновлений масив юзерів: ", users);
 }
 
-// showUsers(users);
-// showUsersHobbyHiking(users);
-// addToJobUser(users);
+showUsers(users);
+showUsersHobbyHiking(users);
+addToJobUser(users);
 
 // 4.	Додати на сторінку івент який буде викидати алерт як тільки ми захочемо скопіювати текст з сторінки (додайте 1 рядок будь якого тексту)
 // і сповіщати що це інтелектуальна власність власника.
@@ -105,10 +105,24 @@ document.addEventListener("copy", () => {
 // Вивести нумерований список з іменами всіх країн та її столицею на сторінку, назву країни зробити
 // великими буквами.
 
+const countryListRef = document.querySelector(".country-list");
+
 const baseUrl = "https://restcountries.eu/rest/v2/all";
 
-const country = fetch(baseUrl)
+fetch(baseUrl)
   .then((res) => res.json())
-  .then(res);
+  .then(showCountryList);
 
 console.log(country);
+
+function showCountryList(country) {
+  country.forEach((country) => {
+    countryListRef.insertAdjacentHTML(
+      "beforeend",
+      `<li>
+    <p>Країна: <span class="country-name">${country.name}</span></p>
+    <p>Столиця: ${country.capital}</p>
+    </li>`
+    );
+  });
+}
